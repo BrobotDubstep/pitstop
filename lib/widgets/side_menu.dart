@@ -20,6 +20,8 @@ class SideMenu extends StatelessWidget {
             iconData: Icons.timer, title: "Results", onTap: () => {}),
         _SideMenuListItem(
             iconData: Icons.groups, title: "Drivers", onTap: () => {}),
+        _SideMenuListItem(
+            iconData: Icons.handyman, title: "Constructors", onTap: () => {}),
       ]),
     );
   }

@@ -7,7 +7,7 @@ abstract class SeasonRepository {
   Future<List<Season>> getAllSeasons();
 }
 
-class SeasonRepositoryImpl extends SeasonRepository {
+class SeasonRepositoryImpl implements SeasonRepository {
   final String _baseURl = 'http://ergast.com/api/f1/seasons.json?limit=72';
 
   SeasonRepositoryImpl();
