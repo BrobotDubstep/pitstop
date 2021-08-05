@@ -9,10 +9,6 @@ class SeasonTable {
         seasons:
             List<Season>.from(json["Seasons"].map((x) => Season.fromJson(x))),
       );
-
-  Map<String, dynamic> toJson() => {
-        "Seasons": List<dynamic>.from(seasons.map((x) => x.toJson())),
-      };
 }
 
 class Season {
@@ -28,9 +24,4 @@ class Season {
         season: json["season"],
         url: json["url"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "season": season,
-        "url": url,
-      };
 }

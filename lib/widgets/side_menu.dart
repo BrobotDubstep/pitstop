@@ -9,7 +9,8 @@ class SideMenu extends StatelessWidget {
       width: 280.0,
       child: Column(children: [
         Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.only(
+                top: 30.0, left: 16.0, right: 16.0, bottom: 10.0),
             child: Image.asset(
               'assets/logo_placeholder.png',
               height: 55.0,
