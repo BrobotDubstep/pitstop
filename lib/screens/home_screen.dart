@@ -9,7 +9,7 @@ class HomeScreen extends ConsumerWidget {
     return Center(
         child: Container(
       child: _seasons.when(
-          data: (data) => Text("success"),
+          data: (data) => Text("Home"),
           loading: () => CircularProgressIndicator(),
           error: (error, stack) => Text(error.toString())),
     ));

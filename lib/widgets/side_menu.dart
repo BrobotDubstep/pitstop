@@ -28,12 +28,12 @@ class SideMenu extends StatelessWidget {
             onTap: () => {this.setIndex(0)}),
         _SideMenuListItem(
             selected: this.selectedIndex == 1,
-            iconData: Icons.timer,
-            title: "Results",
+            iconData: Icons.sports_score,
+            title: "Races",
             onTap: () => {this.setIndex(1)}),
         _SideMenuListItem(
             selected: this.selectedIndex == 2,
-            iconData: Icons.groups,
+            iconData: Icons.sports_motorsports,
             title: "Drivers",
             onTap: () => {this.setIndex(2)}),
         _SideMenuListItem(

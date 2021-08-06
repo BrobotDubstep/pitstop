@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pitstop/screens/constructors_screen.dart';
 import 'package:pitstop/screens/drivers_screen.dart';
 import 'package:pitstop/screens/home_screen.dart';
+import 'package:pitstop/screens/races_screen.dart';
 import 'package:pitstop/widgets/side_menu.dart';
 
 class AppRouter extends StatefulWidget {
@@ -33,11 +35,11 @@ class _AppRouterState extends State<AppRouter> {
                 case 0:
                   return HomeScreen();
                 case 1:
-                  return DriversScreen();
+                  return RacesScreen();
                 case 2:
                   return DriversScreen();
                 case 3:
-                  return DriversScreen();
+                  return ConstructorsScreen();
                 default:
                   return HomeScreen();
               }
