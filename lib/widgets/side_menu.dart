@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SideMenu extends StatelessWidget {
+  final int selectedIndex;
+  final Function setIndex;
+
+  SideMenu({required this.selectedIndex, required this.setIndex});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,13 +21,26 @@ class SideMenu extends StatelessWidget {
               height: 55.0,
               filterQuality: FilterQuality.high,
             )),
-        _SideMenuListItem(iconData: Icons.home, title: "Home", onTap: () => {}),
         _SideMenuListItem(
-            iconData: Icons.timer, title: "Results", onTap: () => {}),
+            selected: this.selectedIndex == 0,
+            iconData: Icons.home,
+            title: "Home",
+            onTap: () => {this.setIndex(0)}),
         _SideMenuListItem(
-            iconData: Icons.groups, title: "Drivers", onTap: () => {}),
+            selected: this.selectedIndex == 1,
+            iconData: Icons.timer,
+            title: "Results",
+            onTap: () => {this.setIndex(1)}),
         _SideMenuListItem(
-            iconData: Icons.handyman, title: "Constructors", onTap: () => {}),
+            selected: this.selectedIndex == 2,
+            iconData: Icons.groups,
+            title: "Drivers",
+            onTap: () => {this.setIndex(2)}),
+        _SideMenuListItem(
+            selected: this.selectedIndex == 3,
+            iconData: Icons.handyman,
+            title: "Constructors",
+            onTap: () => {this.setIndex(3)}),
       ]),
     );
   }
@@ -32,23 +50,29 @@ class _SideMenuListItem extends StatelessWidget {
   final IconData iconData;
   final String title;
   final VoidCallback onTap;
+  final bool selected;
 
   const _SideMenuListItem(
       {Key? key,
       required this.iconData,
       required this.title,
-      required this.onTap})
+      required this.onTap,
+      required this.selected})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(iconData, size: 28.0),
-      title: Text(
-        title,
-        overflow: TextOverflow.ellipsis,
+    return Material(
+      color: Colors.white,
+      child: ListTile(
+        selected: this.selected,
+        leading: Icon(iconData, size: 28.0),
+        title: Text(
+          title,
+          overflow: TextOverflow.ellipsis,
+        ),
+        onTap: onTap,
       ),
-      onTap: onTap,
     );
   }
 }
