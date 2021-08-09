@@ -23,7 +23,7 @@ class Race {
     required this.raceName,
     required this.circuit,
     required this.date,
-    required this.time,
+    this.time,
   });
 
   String season;
@@ -32,7 +32,7 @@ class Race {
   String raceName;
   Circuit circuit;
   DateTime date;
-  String time;
+  String? time;
 
   factory Race.fromJson(Map<String, dynamic> json) => Race(
         season: json["season"],
@@ -41,6 +41,6 @@ class Race {
         raceName: json["raceName"],
         circuit: Circuit.fromJson(json["Circuit"]),
         date: DateTime.parse(json["date"]),
-        time: json["time"],
+        time: json["time"] != null ? json["time"] : null,
       );
 }

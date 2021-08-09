@@ -15,10 +15,7 @@ class DriversScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.02,
-                  top: 20,
-                  bottom: 20,
-                ),
+                    left: MediaQuery.of(context).size.width * 0.02, top: 20),
                 child: Row(children: [
                   Text(
                     'Drivers of ',
@@ -44,7 +41,8 @@ class DriverGrid extends ConsumerWidget {
         data: (data) => Expanded(
             child: GridView.count(
                 padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.02),
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                    vertical: 20),
                 crossAxisCount: 4,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,
