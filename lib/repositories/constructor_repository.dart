@@ -18,7 +18,6 @@ class ConstructorRepositoryImpl implements ConstructorRepository {
 
   ConstructorRepositoryImpl();
 
-  @override
   Future<List<Constructor>> getConstructorsForSelectedYear(String year) async {
     try {
       final response =
@@ -39,7 +38,6 @@ class ConstructorRepositoryImpl implements ConstructorRepository {
     }
   }
 
-  @override
   Future<List<ConstructorStanding>> getConstructorStandingForYear(
       String year) async {
     try {

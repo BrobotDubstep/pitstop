@@ -12,7 +12,6 @@ class SeasonRepositoryImpl implements SeasonRepository {
 
   SeasonRepositoryImpl();
 
-  @override
   Future<List<Season>> getAllSeasons() async {
     try {
       final response = await http.get(Uri.parse(this._baseURl));

@@ -17,7 +17,6 @@ class DriverRepositoryImpl implements DriverRepository {
 
   DriverRepositoryImpl();
 
-  @override
   Future<List<Driver>> getDriversForSelectedYear(String year) async {
     try {
       final response =
@@ -38,7 +37,6 @@ class DriverRepositoryImpl implements DriverRepository {
     }
   }
 
-  @override
   Future<List<DriverStanding>> getDriverStandingForYear(String year) async {
     try {
       final response = await http

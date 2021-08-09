@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:pitstop/models/constructor_table.dart';
 import 'package:pitstop/models/driver_table.dart';
+import 'package:pitstop/models/race_table.dart';
 import 'package:pitstop/models/standings.dart';
 
 import 'season_table.dart';
@@ -30,7 +31,8 @@ class MrData {
       this.seasonTable,
       this.driverTable,
       this.constructorTable,
-      this.standingsTable});
+      this.standingsTable,
+      this.raceTable});
 
   String xmlns;
   String series;
@@ -42,6 +44,7 @@ class MrData {
   DriverTable? driverTable;
   ConstructorTable? constructorTable;
   StandingsTable? standingsTable;
+  RaceTable? raceTable;
 
   factory MrData.fromJson(Map<String, dynamic> json) => MrData(
       xmlns: json["xmlns"],
@@ -56,10 +59,13 @@ class MrData {
       driverTable: json["DriverTable"] != null
           ? DriverTable.fromJson(json["DriverTable"])
           : null,
-      constructorTable: json['ConstructorTable'] != null
+      constructorTable: json["ConstructorTable"] != null
           ? ConstructorTable.fromJson(json["ConstructorTable"])
           : null,
-      standingsTable: json['StandingsTable'] != null
+      standingsTable: json["StandingsTable"] != null
           ? StandingsTable.fromJson(json["StandingsTable"])
+          : null,
+      raceTable: json["RaceTable"] != null
+          ? RaceTable.fromJson(json["RaceTable"])
           : null);
 }
