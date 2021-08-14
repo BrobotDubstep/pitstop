@@ -33,7 +33,7 @@ class _AppRouterState extends State<AppRouter> {
             child: Builder(builder: (context) {
               switch (this._navIndex) {
                 case 0:
-                  return HomeScreen();
+                  return DriversScreen();
                 case 1:
                   return RacesScreen();
                 case 2:

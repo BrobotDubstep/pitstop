@@ -3,6 +3,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pitstop/models/season_table.dart';
 import 'package:pitstop/providers/season_provider.dart';
 
+class DropdownHeading extends StatelessWidget {
+  final String title;
+
+  DropdownHeading({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      Text(
+        this.title,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10.0),
+        child: YearDropDown(),
+      )
+    ]);
+  }
+}
+
 class YearDropDown extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {

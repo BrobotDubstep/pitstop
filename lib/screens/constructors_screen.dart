@@ -5,31 +5,30 @@ import 'package:pitstop/models/constructor_table.dart';
 import 'package:pitstop/models/standings.dart';
 import 'package:pitstop/providers/constructor_provider.dart';
 import 'package:pitstop/providers/season_provider.dart';
+import 'package:pitstop/widgets/data_grid.dart';
 import 'package:pitstop/widgets/year_dropdown.dart';
 
 class ConstructorsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.02, top: 20),
-                child: Row(children: [
-                  Text(
-                    'Constructors of ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+    return SafeArea(
+      child: Center(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.02, top: 20),
+                  child: DropdownHeading(
+                    title: "Constructors of",
                   ),
-                  YearDropDown()
-                ]),
-              ),
-            ],
-          ),
-          ConstructorGridWrapper(),
-        ],
+                ),
+              ],
+            ),
+            ConstructorGridWrapper(),
+          ],
+        ),
       ),
     );
   }
@@ -53,13 +52,8 @@ class CardGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.02, vertical: 20),
-        crossAxisCount: 4,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20,
-        children: (this.constructorStanding != null)
+    return DataGrid(
+        cards: (this.constructorStanding != null)
             ? constructorStanding!.map((data) {
                 return ConstructorCard(constructorStanding: data);
               }).toList()

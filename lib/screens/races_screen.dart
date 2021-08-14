@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pitstop/models/race_table.dart';
 import 'package:pitstop/providers/race_provider.dart';
+import 'package:pitstop/widgets/data_grid.dart';
 import 'package:pitstop/widgets/year_dropdown.dart';
 
 class RacesScreen extends StatelessWidget {
@@ -9,26 +10,24 @@ class RacesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.02, top: 20),
-                child: Row(children: [
-                  Text(
-                    'Races of ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+    return SafeArea(
+      child: Center(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.02, top: 20),
+                  child: DropdownHeading(
+                    title: "Races of",
                   ),
-                  YearDropDown()
-                ]),
-              ),
-            ],
-          ),
-          RaceGrid(),
-        ],
+                ),
+              ],
+            ),
+            RaceGrid(),
+          ],
+        ),
       ),
     );
   }
@@ -40,16 +39,11 @@ class RaceGrid extends ConsumerWidget {
     final races = watch(racesForYearProvider);
     return races.when(
         data: (data) => Expanded(
-            child: GridView.count(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.02,
-                    vertical: 20),
-                crossAxisCount: 4,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
-                children: data.map((data) {
-                  return RaceCard(data);
-                }).toList())),
+                child: DataGrid(
+              cards: data.map((data) {
+                return RaceCard(data);
+              }).toList(),
+            )),
         loading: () => Center(child: CircularProgressIndicator()),
         error: (error, stack) => Text(error.toString()));
   }
