@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pitstop/widgets/app_router.dart';
-import 'package:pitstop/widgets/bottom_nav.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Pitstop',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: (Platform.isMacOS || Platform.isLinux || Platform.isWindows)
-          ? AppRouter()
-          : BottomNav(),
+      home: AppRouter(),
     );
   }
 }

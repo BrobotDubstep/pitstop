@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:pitstop/models/race_table.dart';
 import 'package:pitstop/providers/race_provider.dart';
 import 'package:pitstop/widgets/data_grid.dart';
 import 'package:pitstop/widgets/year_dropdown.dart';
 
 class RacesScreen extends StatelessWidget {
-  const RacesScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,6 +49,7 @@ class RaceGrid extends ConsumerWidget {
 }
 
 class RaceCard extends StatelessWidget {
+  final dateFormat = DateFormat("dd.MM.yyyy");
   final Race race;
 
   RaceCard(this.race);
@@ -69,7 +69,7 @@ class RaceCard extends StatelessWidget {
                 Text(this.race.round),
                 Text(this.race.season),
                 Text(this.race.circuit.circuitName),
-                Text(this.race.date.toString()),
+                Text(dateFormat.format(this.race.date)),
                 this.race.time != null
                     ? Text(this.race.time.toString())
                     : Text("No time available")

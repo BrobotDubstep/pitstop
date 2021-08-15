@@ -6,47 +6,77 @@ import 'package:pitstop/screens/races_screen.dart';
 import 'package:pitstop/widgets/side_menu.dart';
 
 class AppRouter extends StatefulWidget {
-  const AppRouter({Key? key}) : super(key: key);
-
   @override
   _AppRouterState createState() => _AppRouterState();
 }
 
 class _AppRouterState extends State<AppRouter> {
-  int _navIndex = 0;
+  int _selectedIndex = 0;
+
+  List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
+    RacesScreen(),
+    DriversScreen(),
+    ConstructorsScreen()
+  ];
+
+  //Checks if device is phone or tablet
+  String _checkDeviceType(BuildContext context) {
+    var shortestSide = MediaQuery.of(context).size.shortestSide;
+    return shortestSide < 800 ? 'mobile' : 'desktop';
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          if (MediaQuery.of(context).size.width > 800)
-            SideMenu(
-              selectedIndex: _navIndex,
-              setIndex: (int index) {
-                setState(() {
-                  this._navIndex = index;
-                });
-              },
+    final deviceType = _checkDeviceType(context);
+    void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+
+    return (deviceType == 'desktop')
+        ? Scaffold(
+            body: Row(
+              children: [
+                if (MediaQuery.of(context).size.width > 800)
+                  SideMenu(
+                    selectedIndex: _selectedIndex,
+                    setIndex: _onItemTapped,
+                  ),
+                Expanded(child: _widgetOptions.elementAt(_selectedIndex)),
+              ],
             ),
-          Expanded(
-            child: Builder(builder: (context) {
-              switch (this._navIndex) {
-                case 0:
-                  return DriversScreen();
-                case 1:
-                  return RacesScreen();
-                case 2:
-                  return DriversScreen();
-                case 3:
-                  return ConstructorsScreen();
-                default:
-                  return HomeScreen();
-              }
-            }),
           )
-        ],
-      ),
-    );
+        : Scaffold(
+            body: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.sports_score),
+                  label: 'Races',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.sports_motorsports),
+                  label: 'Drivers',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.handyman),
+                  label: 'Constructors',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              selectedItemColor: Theme.of(context).primaryColor,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+            ));
   }
 }
