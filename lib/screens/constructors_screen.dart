@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pitstop/models/constructor_table.dart';
 import 'package:pitstop/models/standings.dart';
@@ -36,8 +35,8 @@ class ConstructorsScreen extends StatelessWidget {
 
 class ConstructorGridWrapper extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final year = watch(yearFilter).state;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final year = ref.watch(yearFilter.state).state;
     return (int.parse(year) > 1957)
         ? ConstructorStandingGrid()
         : ConstructorGrid();
@@ -65,8 +64,8 @@ class CardGrid extends StatelessWidget {
 
 class ConstructorStandingGrid extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final constructors = watch(constructorsStandingForYearProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constructors = ref.watch(constructorsStandingForYearProvider);
     return constructors.when(
         data: (data) => Expanded(
                 child: CardGrid(
@@ -81,8 +80,8 @@ class ConstructorGrid extends ConsumerWidget {
   const ConstructorGrid({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final constructors = watch(constructorsForYearProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constructors = ref.watch(constructorsForYearProvider);
     return constructors.when(
         data: (data) => Expanded(
                 child: CardGrid(

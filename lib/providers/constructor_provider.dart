@@ -10,7 +10,7 @@ final constructorsRepositoryProvider = Provider<ConstructorRepository>((ref) {
 
 final constructorsForYearProvider =
     FutureProvider<List<Constructor>>((ref) async {
-  final filter = ref.watch(yearFilter);
+  final filter = ref.watch(yearFilter.state);
   if (filter.state != "") {
     final drivers = await ref
         .watch(constructorsRepositoryProvider)
@@ -23,7 +23,7 @@ final constructorsForYearProvider =
 
 final constructorsStandingForYearProvider =
     FutureProvider<List<ConstructorStanding>>((ref) async {
-  final filter = ref.watch(yearFilter);
+  final filter = ref.watch(yearFilter.state);
   if (filter.state != "") {
     final drivers = await ref
         .watch(constructorsRepositoryProvider)

@@ -25,9 +25,9 @@ class DropdownHeading extends StatelessWidget {
 
 class YearDropDown extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final seasons = watch(seasonProvider);
-    final filter = watch(yearFilter);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final seasons = ref.watch(seasonProvider);
+    final filter = ref.watch(yearFilter.state);
     return seasons.when(
         data: (data) => DropdownButtonHideUnderline(
               child: DropdownButton(

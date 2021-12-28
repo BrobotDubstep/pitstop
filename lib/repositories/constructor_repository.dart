@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:pitstop/models/constructor_table.dart';
-import 'package:pitstop/models/driver_table.dart';
 import 'package:pitstop/models/mrdata.dart';
 import 'package:http/http.dart' as http;
 import 'package:pitstop/models/standings.dart';

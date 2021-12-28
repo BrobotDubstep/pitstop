@@ -9,7 +9,7 @@ final driversRepositoryProvider = Provider<DriverRepository>((ref) {
 });
 
 final driversForYearProvider = FutureProvider<List<Driver>>((ref) async {
-  final filter = ref.watch(yearFilter);
+  final filter = ref.watch(yearFilter.state);
   if (filter.state != "") {
     final drivers = await ref
         .watch(driversRepositoryProvider)
@@ -22,7 +22,7 @@ final driversForYearProvider = FutureProvider<List<Driver>>((ref) async {
 
 final driverStandingForYearProvider =
     FutureProvider<List<DriverStanding>>((ref) async {
-  final filter = ref.watch(yearFilter);
+  final filter = ref.watch(yearFilter.state);
   if (filter.state != "") {
     final drivers = await ref
         .watch(driversRepositoryProvider)

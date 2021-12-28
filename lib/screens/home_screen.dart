@@ -1,12 +1,11 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pitstop/providers/season_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final _seasons = watch(seasonProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _seasons = ref.watch(seasonProvider);
     return SafeArea(
       child: Center(
           child: Container(

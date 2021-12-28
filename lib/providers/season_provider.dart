@@ -7,10 +7,10 @@ final seasonRepositoryProvider = Provider<SeasonRepository>((ref) {
 });
 
 final seasonProvider = FutureProvider<List<Season>>((ref) async {
-  final filter = ref.read(yearFilter);
+  final filter = ref.read(yearFilter.state);
   final seasons = await ref.watch(seasonRepositoryProvider).getAllSeasons();
   filter.state = seasons[0].season;
   return seasons;
 });
 
-final yearFilter = StateProvider((_) => "");
+final yearFilter = StateProvider<String>((_) => "");

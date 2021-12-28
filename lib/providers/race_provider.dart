@@ -8,7 +8,7 @@ final racesRepositoryProvider = Provider<RaceRepository>((ref) {
 });
 
 final racesForYearProvider = FutureProvider<List<Race>>((ref) async {
-  final filter = ref.watch(yearFilter);
+  final filter = ref.watch(yearFilter.state);
   if (filter.state != "") {
     final races =
         await ref.watch(racesRepositoryProvider).getRacesForYear(filter.state);

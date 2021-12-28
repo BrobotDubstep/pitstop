@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:pitstop/models/constructor_table.dart';
@@ -38,8 +37,8 @@ class DriversScreen extends StatelessWidget {
 
 class DriverGrid extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final drivers = watch(driverStandingForYearProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final drivers = ref.watch(driverStandingForYearProvider);
     return drivers.when(
         data: (data) => Expanded(
               child: DataGrid(
@@ -59,8 +58,8 @@ class DriverCard extends ConsumerWidget {
   DriverCard(this.driverStanding);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final year = watch(yearFilter);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final year = ref.watch(yearFilter.state);
     return Card(
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

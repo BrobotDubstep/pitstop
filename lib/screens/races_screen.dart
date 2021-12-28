@@ -34,8 +34,8 @@ class RacesScreen extends StatelessWidget {
 
 class RaceGrid extends ConsumerWidget {
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final races = watch(racesForYearProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final races = ref.watch(racesForYearProvider);
     return races.when(
         data: (data) => Expanded(
                 child: DataGrid(
