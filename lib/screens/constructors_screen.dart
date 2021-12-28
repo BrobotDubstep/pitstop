@@ -20,10 +20,11 @@ class ConstructorsScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.02, top: 20),
-                  child: DropdownHeading(
-                    title: "Constructors of",
+                    left: MediaQuery.of(context).size.width * 0.02, top: 20
                   ),
+                  child: DropdownHeading(
+                    title: "Constructors",
+                  ),                    
                 ),
               ],
             ),

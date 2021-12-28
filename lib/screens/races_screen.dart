@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:pitstop/models/race_table.dart';
 import 'package:pitstop/providers/race_provider.dart';
 import 'package:pitstop/widgets/data_grid.dart';
+import 'package:pitstop/widgets/data_list_entry.dart';
 import 'package:pitstop/widgets/year_dropdown.dart';
 
 class RacesScreen extends StatelessWidget {
@@ -17,11 +18,11 @@ class RacesScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.02, top: 20),
-                  child: DropdownHeading(
-                    title: "Races of",
+                    left: MediaQuery.of(context).size.width * 0.02, top: 20),
+                    child: DropdownHeading(
+                      title: "Races",
+                    ),                    
                   ),
-                ),
               ],
             ),
             RaceGrid(),
@@ -65,17 +66,52 @@ class RaceCard extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Text(this.race.raceName),
-                Text(this.race.round),
-                Text(this.race.season),
-                Text(this.race.circuit.circuitName),
-                Text(dateFormat.format(this.race.date)),
-                this.race.time != null
-                    ? Text(this.race.time.toString())
-                    : Text("No time available")
+                RaceListTile(name: this.race.raceName, trackName: this.race.circuit.circuitName,),
+                DataListEntry(title: "Round:", description: this.race.round),
+                DataListEntry(title: "Date:", description: dateFormat.format(this.race.date)),
+                DataListEntry(
+                  title: "Lights out:", 
+                  description: this.race.time != null
+                    ? this.race.time!
+                    : "No time available"
+                )
+                
               ],
             ),
           ),
         ));
+  }
+}
+
+class RaceListTile extends StatelessWidget {
+  final String name;
+  final String trackName;
+  
+  RaceListTile({required this.name, required this.trackName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                this.name,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                this.trackName,
+                style: TextStyle(fontSize: 17),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

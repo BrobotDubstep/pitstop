@@ -10,15 +10,27 @@ class DropdownHeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
       Text(
         this.title,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
       ),
-      Padding(
+      Row(
+        children: [
+          Text(
+            "Season ",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+          YearDropDown()
+        ],
+      )
+      /*Padding(
         padding: const EdgeInsets.only(left: 10.0),
         child: YearDropDown(),
-      )
+      )*/
     ]);
   }
 }
@@ -37,7 +49,7 @@ class YearDropDown extends ConsumerWidget {
                   },
                   style: TextStyle(
                       color: Colors.deepPurple,
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold),
                   items: data.map<DropdownMenuItem<String>>((Season value) {
                     return DropdownMenuItem<String>(

@@ -20,10 +20,11 @@ class DriversScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.02, top: 20),
-                  child: DropdownHeading(
-                    title: "Drivers of",
+                    left: MediaQuery.of(context).size.width * 0.02, top: 20
                   ),
+                  child: DropdownHeading(
+                    title: "Drivers",
+                  ),                    
                 ),
               ],
             ),

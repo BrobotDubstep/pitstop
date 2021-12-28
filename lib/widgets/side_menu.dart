@@ -21,26 +21,27 @@ class SideMenu extends StatelessWidget {
               height: 55.0,
               filterQuality: FilterQuality.high,
             )),
-        _SideMenuListItem(
+        /*_SideMenuListItem(
             selected: this.selectedIndex == 0,
             iconData: Icons.home,
             title: "Home",
+            onTap: () => {this.setIndex(0)}),*/
+        _SideMenuListItem(
+            selected: this.selectedIndex == 0,
+            iconData: Icons.sports_motorsports,
+            title: "Drivers",
             onTap: () => {this.setIndex(0)}),
         _SideMenuListItem(
             selected: this.selectedIndex == 1,
-            iconData: Icons.sports_score,
-            title: "Races",
+            iconData: Icons.handyman,
+            title: "Constructors",
             onTap: () => {this.setIndex(1)}),
         _SideMenuListItem(
             selected: this.selectedIndex == 2,
-            iconData: Icons.sports_motorsports,
-            title: "Drivers",
+            iconData: Icons.sports_score,
+            title: "Races",
             onTap: () => {this.setIndex(2)}),
-        _SideMenuListItem(
-            selected: this.selectedIndex == 3,
-            iconData: Icons.handyman,
-            title: "Constructors",
-            onTap: () => {this.setIndex(3)}),
+
       ]),
     );
   }
